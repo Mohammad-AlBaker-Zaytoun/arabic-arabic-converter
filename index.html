@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>MOHAMMAD ZAYTOUN</title>
+  </head>
+  <body onload="setLang(defLang);">
+    <form name="writer" id="writer" class="center">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <div id="box2info">Output</div>
+              <textarea
+                name="outbox"
+                id="outbox"
+                class="outbox"
+                rows="9"
+                cols="50"
+                readonly=""
+                placeholder=""
+                dir="rtl"
+              ></textarea>
+            </td>
+            <td></td>
+            <td>
+              <div id="box1info">Input</div>
+              <textarea
+                name="inpbox"
+                id="inpbox"
+                class="inpbox"
+                rows="9"
+                cols="50"
+                onclick="return(update(this))"
+                onkeyup="return(update(this))"
+                onkeydown="return(update(this))"
+                onkeypress="return(update(this))"
+                onmouseup="return(update(this))"
+                onmousedown="return(update(this))"
+                placeholder=""
+                dir="rtl"
+              ></textarea>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="kbrow">
+        <input
+          id="deletetxt"
+          type="reset"
+          value="Clear Fields"
+          class="flat btn200"
+        />
+        <input
+          id="selecttxt"
+          onclick="selectit();"
+          type="button"
+          value="Select Output"
+          class="flat btn200"
+        />
+        <input
+          id="processtxt"
+          onclick="ProcessInput();"
+          type="button"
+          value="Process Input"
+          class="flat btn200"
+        />
+      </div>
+      <div class="kbrow">
+        <input
+          id="xnumbers"
+          onclick="show(&#39;numbers&#39;);"
+          type="button"
+          value="Numbers"
+          class="flat btn200"
+        />
+        <input
+          id="languagepop"
+          onclick="show(&#39;lang&#39;);"
+          type="button"
+          value="Language"
+          class="flat btn200"
+        />
+        <input
+          id="xharakat"
+          onclick="switch_harakat();"
+          type="button"
+          value="Arabic Harakat Enabled"
+          class="flat btn200"
+        />
+      </div>
+      <div class="kbrow">
+        <input
+          id="aboutpop"
+          onclick="show(&#39;about&#39;);"
+          type="button"
+          value="About"
+          class="flat btn200"
+        />
+        <input
+          id="keyboardpop"
+          onclick="show(&#39;keyboard&#39;);"
+          type="button"
+          value="Arabic Keyboard"
+          class="flat btn200"
+        />
+        <input
+          id="xdir"
+          onclick="switch_dir();"
+          type="button"
+          value="Direction: Right To Left"
+          class="flat btn200"
+        />
+      </div>
+      <div id="lang" class="window center lang ar" style="display: none">
+        <input
+          onclick="hide(&#39;lang&#39;);"
+          type="button"
+          value="X"
+          class="flat close"
+        />
+        <input
+          onclick="setLang(&#39;ar&#39;);"
+          type="button"
+          value="العربية"
+          class="flat btn100"
+        />
+        <input
+          onclick="setLang(&#39;en&#39;);"
+          type="button"
+          value="English"
+          class="flat btn100"
+        />
+      </div>
+      <div id="numbers" class="window center lang ar" style="display: none">
+        <input
+          onclick="hide(&#39;numbers&#39;);"
+          type="button"
+          value="X"
+          class="flat close"
+        />
+        <input
+          onclick="setNumbers(&#39;ar&#39;);"
+          type="button"
+          value="العربية"
+          class="flat btn100"
+        />
+        <input
+          onclick="setNumbers(&#39;en&#39;);"
+          type="button"
+          value="English"
+          class="flat btn100"
+        />
+      </div>
+      <div id="keyboard" class="keyboard window center ar">
+        <input
+          onclick="hide(&#39;keyboard&#39;);"
+          type="button"
+          value="X"
+          class="flat close"
+        />
+        <div class="kbrow">
+          <input
+            id="kbspace"
+            onclick="remKB();"
+            type="button"
+            value="BackSpace"
+            class="flat btn100"
+          />
+          <input
+            onclick="addKB(&#39;+&#39;);"
+            type="button"
+            value="+"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;-&#39;);"
+            type="button"
+            value="-"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;0&#39;);"
+            type="button"
+            value="٠"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;9&#39;);"
+            type="button"
+            value="٩"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;8&#39;);"
+            type="button"
+            value="٨"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;7&#39;);"
+            type="button"
+            value="٧"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;6&#39;);"
+            type="button"
+            value="٦"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;5&#39;);"
+            type="button"
+            value="٥"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;4&#39;);"
+            type="button"
+            value="٤"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;3&#39;);"
+            type="button"
+            value="٣"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;2&#39;);"
+            type="button"
+            value="٢"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;1&#39;);"
+            type="button"
+            value="١"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ذ&#39;);"
+            type="button"
+            value="ذ"
+            class="flat"
+          />
+        </div>
+        <div class="kbrow">
+          <input
+            onclick="addKB(&#39;\\&#39;);"
+            type="button"
+            value="\"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;|&#39;);"
+            type="button"
+            value="|"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;؛&#39;);"
+            type="button"
+            value="؛"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;د&#39;);"
+            type="button"
+            value="د"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ج&#39;);"
+            type="button"
+            value="ج"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ح&#39;);"
+            type="button"
+            value="ح"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;خ&#39;);"
+            type="button"
+            value="خ"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ه&#39;);"
+            type="button"
+            value="هـ"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ع&#39;);"
+            type="button"
+            value="ع"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;غ&#39;);"
+            type="button"
+            value="غ"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ف&#39;);"
+            type="button"
+            value="ف"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ق&#39;);"
+            type="button"
+            value="ق"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ث&#39;);"
+            type="button"
+            value="ث"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ص&#39;);"
+            type="button"
+            value="ص"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ض&#39;);"
+            type="button"
+            value="ض"
+            class="flat"
+          />
+          <input
+            id="ktab"
+            onclick="addKB(&#39;  &#39;);"
+            type="button"
+            value="Tab"
+            class="flat btn50"
+          />
+        </div>
+        <div class="kbrow">
+          <input
+            onclick="addKB(&#39;\n&#39;);"
+            type="button"
+            value="↲"
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;:&#39;);"
+            type="button"
+            value=":"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;/&#39;);"
+            type="button"
+            value="/"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;،&#39;);"
+            type="button"
+            value="،"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;ط&#39;);"
+            type="button"
+            value="ط"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ك&#39;);"
+            type="button"
+            value="ك"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;م&#39;);"
+            type="button"
+            value="م"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ن&#39;);"
+            type="button"
+            value="ن"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ت&#39;);"
+            type="button"
+            value="ت"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ا&#39;);"
+            type="button"
+            value="ا"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ل&#39;);"
+            type="button"
+            value="ل"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ب&#39;);"
+            type="button"
+            value="ب"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ي&#39;);"
+            type="button"
+            value="ي"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;س&#39;);"
+            type="button"
+            value="س"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ش&#39;);"
+            type="button"
+            value="ش"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;[&#39;);"
+            type="button"
+            value="["
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;]&#39;);"
+            type="button"
+            value="]"
+            class="flat btn24"
+          />
+        </div>
+        <div class="kbrow">
+          <input
+            onclick="addKB(&#39;؟&#39;);"
+            type="button"
+            value="؟"
+            class="flat btn26"
+          />
+          <input
+            onclick="addKB(&#39;”&#39;);"
+            type="button"
+            value='"'
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;.&#39;);"
+            type="button"
+            value="."
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;,&#39;);"
+            type="button"
+            value=","
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;’&#39;);"
+            type="button"
+            value="’"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;ظ&#39;);"
+            type="button"
+            value="ظ"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ز&#39;);"
+            type="button"
+            value="ز"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;و&#39;);"
+            type="button"
+            value="و"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ة&#39;);"
+            type="button"
+            value="ة"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ى&#39;);"
+            type="button"
+            value="ى"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;لا&#39;);"
+            type="button"
+            value="لا"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ر&#39;);"
+            type="button"
+            value="ر"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ؤ&#39;);"
+            type="button"
+            value="ؤ"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ء&#39;);"
+            type="button"
+            value="ء"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ئ&#39;);"
+            type="button"
+            value="ئـ"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;{&#39;);"
+            type="button"
+            value="{"
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;}&#39;);"
+            type="button"
+            value="}"
+            class="flat btn28"
+          />
+        </div>
+        <div class="kbrow">
+          <input
+            onclick="addKB(&#39;‍پ&#39;);"
+            type="button"
+            value="پ"
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;چ&#39;);"
+            type="button"
+            value="چ"
+            class="flat btn26"
+          />
+          <input
+            onclick="addKB(&#39;ژ&#39;);"
+            type="button"
+            value="ژ"
+            class="flat btn26"
+          />
+          <input
+            onclick="addKB(&#39;ڤ&#39;);"
+            type="button"
+            value="ڤ"
+            class="flat btn26"
+          />
+          <input
+            onclick="addKB(&#39;گ&#39;);"
+            type="button"
+            value="گ"
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;ک&#39;);"
+            type="button"
+            value="ک"
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;ی&#39;);"
+            type="button"
+            value="ی"
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;‍ٹ&#39;);"
+            type="button"
+            value="ٹ"
+            class="flat btn26"
+          />
+          <input
+            onclick="addKB(&#39;ہ&#39;);"
+            type="button"
+            value="ہ"
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;ے&#39;);"
+            type="button"
+            value="ے"
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;ڈ&#39;);"
+            type="button"
+            value="ڈ"
+            class="flat btn26"
+          />
+          <input
+            onclick="addKB(&#39;ڑ&#39;);"
+            type="button"
+            value="ڑ"
+            class="flat btn26"
+          />
+          <input
+            onclick="addKB(&#39;ۇ&#39;);"
+            type="button"
+            value="ۇ"
+            class="flat btn26"
+          />
+          <input
+            onclick="addKB(&#39;ۆ&#39;);"
+            type="button"
+            value="ۆ"
+            class="flat btn26"
+          />
+          <input
+            onclick="addKB(&#39;ۈ&#39;);"
+            type="button"
+            value="ۈ"
+            class="flat btn26"
+          />
+          <input
+            onclick="addKB(&#39;ـ&#39;);"
+            type="button"
+            value="ــ"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;&lt;&#39;);"
+            type="button"
+            value="&lt;"
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;&gt;&#39;);"
+            type="button"
+            value="&gt;"
+            class="flat btn28"
+          />
+        </div>
+        <div class="kbrow">
+          <input
+            onclick="addKB(&#39;لا&#39;);"
+            type="button"
+            value="لا"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;أ&#39;);"
+            type="button"
+            value="أ"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;لأ&#39;);"
+            type="button"
+            value="لأ"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;إ&#39;);"
+            type="button"
+            value="إ"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;لإ&#39;);"
+            type="button"
+            value="لإ"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;آ&#39;);"
+            type="button"
+            value="آ"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;لآ&#39;);"
+            type="button"
+            value="لآ"
+            class="flat"
+          />
+          <input
+            onclick="addKB(&#39;ُ&#39;);"
+            type="button"
+            value="  ُ "
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;ٌ&#39;);"
+            type="button"
+            value="  ٌ "
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;َ&#39;);"
+            type="button"
+            value="  َ "
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;ً&#39;);"
+            type="button"
+            value="  ً "
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;ِ&#39;);"
+            type="button"
+            value="  ِ "
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;ٍ&#39;);"
+            type="button"
+            value="  ٍ "
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;ّ&#39;);"
+            type="button"
+            value="  ّ "
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;ْ&#39;);"
+            type="button"
+            value="  ْ "
+            class="flat btn28"
+          />
+          <input
+            onclick="addKB(&#39;~&#39;);"
+            type="button"
+            value="~"
+            class="flat"
+          />
+        </div>
+        <div class="kbrow">
+          <input
+            onclick="addKB(&#39;×&#39;);"
+            type="button"
+            value="×"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;÷&#39;);"
+            type="button"
+            value="÷"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;‘&#39;);"
+            type="button"
+            value="‘"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;=&#39;);"
+            type="button"
+            value="="
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;_&#39;);"
+            type="button"
+            value="_"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;(&#39;);"
+            type="button"
+            value="("
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;)&#39;);"
+            type="button"
+            value=")"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;*&#39;);"
+            type="button"
+            value="*"
+            class="flat btn24"
+          />
+          <input
+            id="kspace"
+            onclick="addKB(&#39; &#39;);"
+            type="button"
+            value="Space"
+            class="flat btn200"
+          />
+          <input
+            onclick="addKB(&#39;&amp;&#39;);"
+            type="button"
+            value="&amp;"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;^&#39;);"
+            type="button"
+            value="^"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;%&#39;);"
+            type="button"
+            value="%"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;$&#39;);"
+            type="button"
+            value="$"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;#&#39;);"
+            type="button"
+            value="#"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;@&#39;);"
+            type="button"
+            value="@"
+            class="flat btn24"
+          />
+          <input
+            onclick="addKB(&#39;!&#39;);"
+            type="button"
+            value="!"
+            class="flat btn24"
+          />
+        </div>
+      </div>
+      <!-- --------------------------- -->
+      <div
+        id="about"
+        class="window about"
+        style="display: none; z-index: 100000"
+      >
+        <input
+          onclick="hide(&#39;about&#39;);"
+          type="button"
+          value="X"
+          class="flat close"
+        />
+        <div id="arAbout" class="ar" style="display: none">
+          <table>
+            <tbody>
+              <tr>
+                <td style="width: 35%">
+                  <b>نبذة عن الأداة</b>
+                  <p>
+                    أداة موجهة للمصممين لمساعدتهم على الكتابة بالبرامج التي لا
+                    تدعم اللغة العربية كبرنامج فوتوشوب وغيره من برامج التصميم.
+                  </p>
+                  <br />
+                  <b>نبذة عن المؤلف:</b>
+                  <ul>
+                    <li>الاسم: محمد الباقر زيتون</li>
+                    <li>الجنسية: لبناني</li>
+                    <li>
+                      تابعوني على:
+                      <a
+                        target="_blank"
+                        href="https://www.facebook.com/zaytouncrs"
+                        >فيسبوك</a
+                      >
+                    </li>
+                    <li>البريد الالكتروني: zaytouncrs@gmail.com</li>
+                  </ul>
+                  <br />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="enAbout" class="en" style="display: block">
+          <table>
+            <tbody>
+              <tr>
+                <td style="width: 35%">
+                  <b>About this tool:</b>
+                  <p>
+                    Created to help Designers to work with Programs that doesn't
+                    support Arabic language such as Photoshop.
+                  </p>
+                  <br />
+                  <b>About the author:</b>
+                  <ul>
+                    <li>Name: MOHAMMAD ALBAKER ZAYTOUN</li>
+                    <li>Nationality: Lebanese</li>
+                    <li>
+                      Follow me:
+                      <a
+                        target="_blank"
+                        href="https://www.facebook.com/zaytouncrs"
+                        >Facebook</a
+                      >
+                    </li>
+                    <li>E-mail: zaytouncrs@gmail.com</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+
+    <script src="script.js"></script>
+  </body>
+</html>
